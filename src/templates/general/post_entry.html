@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title_page %} {{ block.super }} - Rate {{post_entry.name}} {% endblock title_page %}
+
+{% block content %}
+
+    <a href="{% url 'post' post.id %}">Rate other Entries</a>
+
+    <div class="title--container flex-col flex-gap-xl title--spacing">
+        <div class="flex-col flex-gap-sm">
+            <h1 class="postdetail--name headersize">Rate {{post_entry.name}}</h1>
+        </div>
+    </div>
+
+    <div id="post-entry" class="post-entry--container">
+        {% include 'general/widgets/post_entry_profile.html' %}
+    </div>
+
+    <form hx-post="{% url 'entry' post.id post_entry.id %}" enctype="multipart/form-data" hx-target="#post-entry">
+        {% csrf_token %}
+        {{form}}
+
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

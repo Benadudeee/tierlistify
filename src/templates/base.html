@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title_page %} Tierlistify {% endblock title_page %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    {% include 'widgets/navbar.html' %}
+    <main class="main--container site--container">
+        {% include 'widgets/sidebar.html' %}
+        
+        <div class="site--content site--wrapper">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+        <script>
+          document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+          })
+        </script>
+    </main>
+</body>
+</html>

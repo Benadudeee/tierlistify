@@ -1,0 +1,42 @@
+<aside class="sidebar">
+    <div class="sidebar--sticker">
+        <div class="sidebar--wrapper flex-col site--wrapper">
+            <nav class="sidebar--option--container flex-col flex-gap-2xl">
+                <div class="sidebar--section--container flex-col flex-gap-lg">
+                    <p class="sidebar--option--title">Options</p>
+                    <ul class="sidebar--section flex-col flex-gap-md">
+                        <li>
+                            <a class="sidebar--option" href=""> <span class="sidebar--option--text">My Posts</span></a>
+                        </li>
+                        <li>
+                            <a class="sidebar--option" href="{% url 'home' %}"><span class="sidebar--option--text">All Posts</span></a>
+                        </li>
+                        <li>
+                            <a class="sidebar--option" href="{% url 'create_post' %}"><span class="sidebar--option--text">Create a Post</span></a>
+                        </li>
+    
+                    </ul>
+                </div>
+                <div class="sidebar--section--container flex-col flex-gap-lg">
+                    <p class="sidebar--option--title">Categories</p>
+                    <ul class="sidebar--section flex-col flex-gap-md">
+                        <li>
+                            <a class="sidebar--option"> <span class="sidebar--option--text">Multiversus</span></a>
+                        </li>
+                        <li>
+                            <a class="sidebar--option"><span class="sidebar--option--text">Street Fighter 6</span></a>
+                        </li>
+                        <li>
+                            <a class="sidebar--option"><span class="sidebar--option--text">Brawlhalla</span></a>
+                        </li>
+                        <li>
+                            <a class="sidebar--option"><span class="sidebar--option--text">Super Smash Bros Ultimate</span></a>
+                        </li>
+    
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title_page %} {{ block.super }} - Rate {{post_entry.name}} {% endblock title_page %}
+{% block content %}
+    <div class="title--container">
+        <h1 class="headersize">All Posts</h1>
+        <p>{{all_posts}}</p>
+    </div>
+
+    <section class="post--container flex-col flex-gap-md">
+        {% for post in posts %}
+        <a href="{% url 'post' post.id %}">
+            <div class="post card">
+                <div class="post--header">
+                    <h2 class="post--title">{{ post.name }}</h2>
+                    <p class="secondary-text post--author">By: {{ post.author }}</p>
+                    
+                    <div class="posttags--container">
+                        {% for tag in post.tags.all %}
+    
+                            <p class="tag">{{tag.name}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                
+                <div class="post--content">
+
+                    <div class="topentries--container">
+                        {% for entry in post.tierlistentry_set.all|slice:":3" %}
+                            <div class="entries--container">
+                                <img class="entries--container--img" src="{{entry.image.url}}" alt="{{entry.name}}">
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </section>
+
+{% endblock %}

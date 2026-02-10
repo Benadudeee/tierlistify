@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title_page %} {{ block.super }} - Rate {{post_entry.name}} {% endblock title_page %}
+{% block content %}
+    <div class="title--container">
+        <h1 class="headersize">All Posts</h1>
+        <!-- <p>{{all_posts}}</p> -->
+    </div>
+
+    <section class="post--container flex-col flex-gap-md">
+        {% if not posts %}
+            <h2>There seems to be no posts now :(</h2>
+            <p>Check back later</p>
+        {% else %}
+            {% for post in posts %}
+            <a href="">
+                <div class="post card">
+                    <div class="post--header">
+                        <h2 class="post--title">{{ post.name }}</h2>
+                        <p class="secondary-text post--author">By: {{ post.author }}</p>
+                        
+                        <div class="posttags--container">
+                            {% for tag in post.tags.all %}
+        
+                                <p class="tag">{{tag.name}}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    
+                    <div class="post--content">
+
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        {% endif %}
+    </section>
+
+{% endblock %}

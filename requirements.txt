@@ -1,3 +1,5 @@
 django>=5.0,<5.2
 python-dotenv
 six
+Pillow
+psycopg[binary]

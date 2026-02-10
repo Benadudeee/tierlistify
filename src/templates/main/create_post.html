@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="title--container flex-col flex-gap-xl title--spacing">
+
+        <div class="flex-col flex-gap-sm">
+            <h1 class="postdetail--name headersize">Create A Post</h1>
+        </div>
+            <!-- <p class="post--description">{{post.description}}</p> -->
+        <div class="post-creation--form">
+            
+        <form post="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ post_creation_form }}
+            <input type="submit" value="Submit">
+        </form>
+         </div>
+    </div>
+
+{% endblock %}

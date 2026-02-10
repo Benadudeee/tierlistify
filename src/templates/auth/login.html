@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<form action="{% url 'login' %}" method="POST", enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Login</button>
-</form>
-{% endblock %}

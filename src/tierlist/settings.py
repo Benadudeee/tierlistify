@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import psycopg
 
 load_dotenv()
 
@@ -35,15 +36,19 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'main',
+    'userprofile.apps.AuthConfig',
     'django.contrib.admin',
+    'django.contrib.messages',
     'django.contrib.auth',
+    'allauth',
+    'allauth.account',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
+    'allauth.account.middleware.AccountMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,8 +84,12 @@ WSGI_APPLICATION = 'tierlist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_LOCAL_NAME'),
+        'USER': os.getenv('DB_LOCAL_USER'),
+        'PASSWORD': os.getenv('DB_LOCAL_PASSWORD'),
+        'HOST' : os.getenv('DB_LOCAL_HOST'),
+        'PORT' : os.getenv('DB_LOCAL_PORT')
     }
 }
 
@@ -103,6 +112,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

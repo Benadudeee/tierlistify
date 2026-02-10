@@ -1,5 +1,9 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/widgets/navbar.css' %}">
+
 <header class="site--navigation">
-    <div class="navigation--container">
+    <nav class="navigation--container">
         <div class="sidebar--logo">
             <p>TIERLISTIFY</p>
         </div>
@@ -9,16 +13,22 @@
             {% if user.is_authenticated %}
             {% csrf_token %}
                 <ul class="nav--list">
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    <li><a href="{% url 'profile' user.username %}">Profile</a></li>
+                    <p>Welcome {{ user.username }}</p>
+                    <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                    <!-- TODO: Setup Profile -->
                 </ul>
             {% else %}
                 <ul class="nav--list">
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="">Sign Up</a></li>
-                    <li><a href=""></a></li>
+                    <li><a href="{% url 'account_login' %}">Login</a></li>
+                    <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
                 </ul>
             {% endif %}
         </div>
-    </div>
+
+        <div class="nav--hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
 </header>

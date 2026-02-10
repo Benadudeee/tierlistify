@@ -1,23 +1,41 @@
+{% load static %}
+
+<!-- ==== SIDEBAR WIDGET ==== -->
+
+<link rel="stylesheet" href="{% static 'css/widgets/sidebar.css' %}">
+
+
 <aside class="sidebar">
     <div class="sidebar--sticker">
         <div class="sidebar--wrapper flex-col site--wrapper">
             <nav class="sidebar--option--container flex-col flex-gap-2xl">
+                <div class="sidebar--section--container account flex-col flex-gap-lg">
+                    <p class="sidebar--option--title">Account</p>
+
+                    {%  if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'account_logout' %}" class="sidebar--opation"><span class="sidebar--option--text">Logout</span></a>
+                        </li>
+                    {% endif %}
+                </div>
                 <div class="sidebar--section--container flex-col flex-gap-lg">
                     <p class="sidebar--option--title">Options</p>
                     <ul class="sidebar--section flex-col flex-gap-md">
                         <li>
-                            <a class="sidebar--option" href=""> <span class="sidebar--option--text">My Posts</span></a>
+                            <a class="sidebar--option" href="{% url 'feed' %}"><span class="sidebar--option--text">All Posts</span></a>
                         </li>
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a class="sidebar--option" href=""> <span class="sidebar--option--text">My Posts</span></a>
+                            </li>
+                        {% endif %}
                         <li>
-                            <a class="sidebar--option" href="{% url 'home' %}"><span class="sidebar--option--text">All Posts</span></a>
-                        </li>
-                        <li>
-                            <a class="sidebar--option" href="{% url 'create_post' %}"><span class="sidebar--option--text">Create a Post</span></a>
+                            <a class="sidebar--option" href="{% url 'create' %}"><span class="sidebar--option--text">Create a Post</span></a>
                         </li>
     
                     </ul>
                 </div>
-                <div class="sidebar--section--container flex-col flex-gap-lg">
+                <!-- <div class="sidebar--section--container flex-col flex-gap-lg">
                     <p class="sidebar--option--title">Categories</p>
                     <ul class="sidebar--section flex-col flex-gap-md">
                         <li>
@@ -34,7 +52,7 @@
                         </li>
     
                     </ul>
-                </div>
+                </div> -->
             </nav>
 
         </div>

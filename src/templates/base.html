@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title_page %} Tierlistify {% endblock title_page %}</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
 </head>
 <body>
     {% include 'widgets/navbar.html' %}
@@ -13,6 +13,10 @@
         {% include 'widgets/sidebar.html' %}
         
         <div class="site--content site--wrapper">
+            {% if not user.is_authenticated %}
+                <p class="announcement">You need to create an account to create and rate tierlists <a href="/auth/login" >Login</a> or <a href="/auth/signup">Create an Account</a></a></p>
+            {% endif %}
+
             {% block content %}
             {% endblock %}
         </div>
